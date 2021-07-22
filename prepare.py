@@ -59,5 +59,13 @@ def clean_daily_portfolio_adjustments(df):
     # Reset the index
     df = df.reset_index()
     df = df.drop(columns='index')
+
+    # Cast values to a specified dyptes
+    dtype_dic = {'shares': 'int64', '% of etf': 'float64'}
+    df = df.astype(dtype_dic)
+    df.date = pd.to_datetime(df.date)
+
+    # Set the date column as the index
+    df = df.set_index('date')
     
     return df
