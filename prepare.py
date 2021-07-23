@@ -9,7 +9,7 @@ from datetime import date
 import env
 
 # Database path
-database = env.database
+database = env.benchmarksdb
 
 
 def combine_usexchanges():
