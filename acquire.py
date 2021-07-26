@@ -7,18 +7,18 @@ import pandas_datareader.data as web
 
 # Create the functions to download the stock
 
-def acquire_stock_data(stocks, source, start_date, end_date):
+def acquire_stock_adjclosing(stocks, start_date, end_date, source='yahoo'):
     '''
     Return the adjusted closing prices of the interested stocks.
     Parameters: 
-        - stocks(list): a list of the stock name
-        - source(str): specify where the data is downloaded.
+        - stocks(list): a list of the stock symbols
         - start_date(str): the start date in standard format
         - end_date(str): the end date in standard format
+        - source(str): specify where the data is downloaded and the default source is yahoo finance
     '''
-    data = web.DataReader(stocks, data_source=source, start=start_date, end=end_date)['Adj Close']
-    data.columns = stocks
-    return data
+    df_adjclosing = web.DataReader(stocks, data_source=source, start=start_date, end=end_date)['Adj Close']
+    df_adjclosing.columns = stocks
+    return df_adjclosing
 
 def load_jane_street_train():
     '''
